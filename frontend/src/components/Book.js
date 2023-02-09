@@ -17,10 +17,11 @@ const BookList = ({ items }) => {
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
-                <th>AUHTOR</th>
-            </tr>
-            {items.map((item) => <BookItem item={item} />)}
+                <th>AUTHOR</th>
+                {/* {items.map((item) => <BookItem item={item} />)}*/}
+           </tr>
         </table>
+
     )
 }
 

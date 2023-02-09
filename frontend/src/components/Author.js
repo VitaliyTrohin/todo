@@ -20,7 +20,7 @@ const AuthorList = ({ items }) => {
                 <th>NAME</th>
                 <th>BIRTHDAY_YEAR</th>
             </tr>
-            {items.map((item) => <AuthorItem item={item} />)}
+            {/*{items.map((item) => <AuthorItem item={item} />)} */}
         </table>
     )
 }
