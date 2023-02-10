@@ -1,10 +1,11 @@
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from .models import Author, Biography, Article, Book
-from .serializers import AuthorSerializer, BiographySerializer, ArticleSerializer, BookSerializer, BookSerializerBase
+from .serializers import AuthorSerializer, AuthorSerializer2, BiographySerializer, ArticleSerializer, BookSerializer
 # from rest_framework.views import APIView
 from rest_framework.response import Response
-# from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 # from rest_framework.renderers import JSONRenderer
+from rest_framework import generics
 
 
 class AuthorModelViewSet(ModelViewSet):
@@ -28,14 +29,14 @@ class BookModelViewSet(ModelViewSet):
     serializer_class = BookSerializer
     filterset_fields = ['name']
 
+
+class MyAPIView(generics.ListAPIView):
+    queryset = Author.objects.all()
+    serializer = AuthorSerializer
+
     def get_serializer_class(self):
-        if self.request.method in ['GET']:
-            return BookSerializer
-        return BookSerializerBase
-
-
-class MyAPIView(ViewSet):
-    def list(self, request):
-        authors = Author.objects.all()
-        serializer = AuthorSerializer(authors, many=True)
-        return Response(serializer.data)
+        if self.request.version == '1':
+            return AuthorSerializer
+        return AuthorSerializer2
+    
+    

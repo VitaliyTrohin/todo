@@ -1,6 +1,6 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
 from .models import Author, Biography, Article, Book
-from rest_framework import serializers
+# from rest_framework import serializers
 
 
 class AuthorSerializer(HyperlinkedModelSerializer):
@@ -8,6 +8,12 @@ class AuthorSerializer(HyperlinkedModelSerializer):
         model = Author
         fields = '__all__'
         # exclude = ['name'] # выбрать все, кроме 'name'
+
+
+class AuthorSerializer2(HyperlinkedModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'        
 
 
 class BiographySerializer(HyperlinkedModelSerializer):
@@ -20,19 +26,14 @@ class ArticleSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Article
         fields = '__all__'
-
-
-class BookSerializerBase(serializers.ModelSerializer):
-    class Meta:
-          model = Book
-          fields = '__all__'     
-
+    
 
 class BookSerializer(HyperlinkedModelSerializer):
     # author = AuthorSerializer()
     class Meta:
         model = Book
         fields = '__all__'
+
 
 """
 author1 = Author.objects.create(name='Грин', birthday_year=1880)
