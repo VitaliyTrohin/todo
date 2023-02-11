@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'authors',
     'django_filters',
     'rest_framework.authtoken',
-    'corsheaders', 
+    'corsheaders',
+    'graphene_django' 
 ]
 
 MIDDLEWARE = [
@@ -154,4 +155,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+GRAPHENE = {
+"SCHEMA": "library.schema.schema"
 }

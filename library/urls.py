@@ -21,6 +21,8 @@ from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
+from django.urls import path
+from graphene_django.views import GraphQLView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -46,6 +48,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
     # re_path(r'^myapi/(?P<version>\d)/authors/$', MyAPIView.as_view({'get': 'list'})),
     # path('api/auyhors/1', include('authors.urls', namespace='1')),
     # path('api/authors/2', include('authors.urls', namespace='2')),
